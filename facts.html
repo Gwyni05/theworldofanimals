@@ -1,44 +1,67 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мир животных - Факты</title>
-    <link rel="stylesheet" href="style.css">
+<div class="link-buttons">
+  <a href="index.html" class="link-button">Главная</a>
+  <a href="catalog.html" class="link-button">Каталог животных</a>
+  <a href="facts.html" class="link-button">Интересные факты</a>
+  <a href="quiz.html" class="link-button">Угадай животное</a>
+  <a href="contacts.html" class="link-button">Связаться с нами</a>
+</div>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Интересные факты о животных</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .facts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .fact-card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .fact-card:hover {
+      transform: translateY(-5px);
+    }
+    .dark .fact-card {
+      background: #222;
+      color: #fff;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>🐾 Мир животных</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="catalog.html">Животные</a></li>
-                <li><a href="facts.html">Факты</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <h2>Удивительные факты о животных</h2>
-        <div class="facts-list">
-            <div class="fact-card">
-                <h3>Слоны</h3>
-                <p>Слоны могут узнавать себя в зеркале — это признак высокого интеллекта.</p>
-            </div>
-            <div class="fact-card">
-                <h3>Кальмары</h3>
-                <p>Гигантские кальмары имеют глаза размером с баскетбольный мяч.</p>
-            </div>
-            <div class="fact-card">
-                <h3>Пингвины</h3>
-                <p>Пингвины могут пить солёную воду благодаря специальным железам.</p>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>© 2025 Мир животных | Выполнила Шумилова Виктория Игоревна</p>
-    </footer>
+  <button id="theme-toggle">🌙 / ☀️</button>
+  <main>
+    <h1>Интересные факты о животных</h1>
+    <div class="facts-grid">
+      <div class="fact-card">Коалы спят до 22 часов в сутки.</div>
+      <div class="fact-card">У осьминогов три сердца и синяя кровь.</div>
+      <div class="fact-card">Бегемоты потеют красной жидкостью, которая действует как солнцезащитный крем.</div>
+      <div class="fact-card">Летучие мыши — единственные млекопитающие, которые могут летать.</div>
+      <div class="fact-card">Сердце синего кита размером с небольшой автомобиль.</div>
+      <div class="fact-card">У морских звёзд нет мозга и крови.</div>
+      <div class="fact-card">Кролики видят почти на 360 градусов.</div>
+      <div class="fact-card">Пчёлы могут узнавать лица людей.</div>
+      <div class="fact-card">Некоторые медузы бессмертны (Turritopsis dohrnii).</div>
+      <div class="fact-card">Слоны умеют узнавать себя в зеркале — редкое качество среди животных.</div>
+    </div>
+  </main>
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
 </body>
 </html>

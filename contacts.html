@@ -10,12 +10,14 @@
     <header>
         <h1>🐾 Мир животных</h1>
         <nav>
-            <ul>
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="catalog.html">Животные</a></li>
-                <li><a href="facts.html">Факты</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-            </ul>
+            <div class="link-buttons">
+  <a href="index.html" class="link-button">Главная</a>
+  <a href="catalog.html" class="link-button">Каталог животных</a>
+  <a href="facts.html" class="link-button">Интересные факты</a>
+  <a href="quiz.html" class="link-button">Угадай животное</a>
+  <a href="contacts.html" class="link-button">Связаться с нами</a>
+</div>
+
         </nav>
     </header>
 
@@ -40,5 +42,19 @@
     <footer>
         <p>© 2025 Мир животных | Выполнила Шумилова Виктория Игоревна</p>
     </footer>
+<button id="theme-toggle" aria-label="Переключить тему">🌙 / ☀️</button>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('theme-toggle');
+  toggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+  });
+
+  if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
+});
+</script>
 </body>
 </html>

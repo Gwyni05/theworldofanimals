@@ -1,44 +1,64 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мир животных - Каталог</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Мир животных - Каталог</title>
+<link href="style.css" rel="stylesheet"/>
 </head>
 <body>
-    <header>
-        <h1>🐾 Мир животных</h1>
-        <nav>
-            <ul>
-		<li><a href="index.html">Главная</a></li>
-                <li><a href="catalog.html">Животные</a></li>
-                <li><a href="facts.html">Факты</a></li>
-                <li><a href="contacts.html">Контакты</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>
+<h1>🐾 Мир животных</h1>
+<nav>
+<ul>
+<div class="link-buttons">
+  <a href="index.html" class="link-button">Главная</a>
+  <a href="catalog.html" class="link-button">Каталог животных</a>
+  <a href="facts.html" class="link-button">Интересные факты</a>
+  <a href="quiz.html" class="link-button">Угадай животное</a>
+  <a href="contacts.html" class="link-button">Связаться с нами</a>
+</div>
+</ul>
+</nav>
+</header>
+<main>
+<div class="search-container">
+<input id="search" placeholder="Поиск животных..." type="text"/>
+<button id="clear-search">×</button>
+</div>
+<h2>Животные</h2>
+<div class="catalog-grid">
+<div class="animal-card">
+<h3>Тигр</h3>
+<p>Крупный хищник семейства кошачьих.</p>
+</div>
+<div class="animal-card">
+<h3>Панда</h3>
+<p>Медведь, питающийся бамбуком.</p>
+</div>
+<div class="animal-card">
+<h3>Волк</h3>
+<p>Хищник, живущий в стае.</p>
+</div>
+<div class="animal-card"><h3>Капибара</h3><p>Самый крупный грызун в мире, обожает купаться.</p></div><div class="animal-card"><h3>Красная панда</h3><p>Ловко лазает по деревьям и питается бамбуком.</p></div><div class="animal-card"><h3>Колибри</h3><p>Умеет зависать в воздухе и летать задом наперёд.</p></div><div class="animal-card"><h3>Морской конёк</h3><p>У этих рыб икру вынашивает самец.</p></div><div class="animal-card"><h3>Касатка</h3><p>Высокоорганизованный морской хищник, охотящийся стаями.</p></div></div>
+</main>
+<footer>
+<p>© 2025 Мир животных | Выполнила Шумилова Виктория Игоревна</p>
+</footer>
+<button id="theme-toggle" aria-label="Переключить тему">🌙 /☀️</button>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('theme-toggle');
+  toggle.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+  });
 
-    <main>
-        <h2>Животные</h2>
-        <div class="catalog-grid">
-            <div class="animal-card">
-                <h3>Тигр</h3>
-                <p>Крупный хищник семейства кошачьих.</p>
-            </div>
-            <div class="animal-card">
-                <h3>Панда</h3>
-                <p>Медведь, питающийся бамбуком.</p>
-            </div>
-            <div class="animal-card">
-                <h3>Волк</h3>
-                <p>Хищник, живущий в стае.</p>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <p>© 2025 Мир животных | Выполнила Шумилова Виктория Игоревна</p>
-    </footer>
+  if (localStorage.getItem('theme') === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
+});
+</script>
 </body>
 </html>

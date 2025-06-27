@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<div class="link-buttons">
+  <a href="index.html" class="link-button">Главная</a>
+  <a href="catalog.html" class="link-button">Каталог животных</a>
+  <a href="facts.html" class="link-button">Интересные факты</a>
+  <a href="quiz.html" class="link-button">Угадай животное</a>
+  <a href="contacts.html" class="link-button">Связаться с нами</a>
+</div>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Угадай животное</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .quiz-container {
+      max-width: 600px;
+      margin: 2em auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .dark .quiz-container {
+      background: #222;
+      color: #fff;
+    }
+    .quiz-container img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1em;
+    }
+    .quiz-option {
+      display: block;
+      margin: 10px 0;
+      padding: 12px 20px;
+      background: #FF9800;
+      color: white;
+      font-size: 1.1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+      border: none;
+    }
+    .quiz-option:hover {
+      background: #F57C00;
+    }
+    .dark .quiz-option {
+      background: #2196F3;
+    }
+    .dark .quiz-option:hover {
+      background: #1976D2;
+    }
+    .result {
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-top: 20px;
+      color: #333;
+    }
+    .dark .result {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <button id="theme-toggle">🌙 / ☀️</button>
+  <main>
+    <div class="quiz-container">
+      <h1>Угадай животное</h1>
+      <img id="quiz-image" src="lion.jpg" alt="Животное" />
+      <div id="quiz-options"></div>
+      <div class="result" id="quiz-result"></div>
+    </div>
+  </main>
+  <script>
+    const questions = [
+      {
+        image: "lion.png",
+        correct: "Лев",
+        options: ["Лев", "Тигр", "Пантера", "Гепард"]
+      },
+      {
+        image: "sova.png",
+        correct: "Сова",
+        options: ["Сова", "Голубь", "Сокол", "Аист"]
+      },
+      {
+        image: "delphine.png",
+        correct: "Дельфин",
+        options: ["Акула", "Кит", "Дельфин", "Морж"]
+      }
+    ];
+
+    let current = 0;
+    const image = document.getElementById('quiz-image');
+    const options = document.getElementById('quiz-options');
+    const result = document.getElementById('quiz-result');
+
+    function loadQuestion() {
+      const q = questions[current];
+      image.src = q.image;
+      image.alt = q.correct;
+      options.innerHTML = '';
+      result.textContent = '';
+
+      q.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.textContent = opt;
+        btn.className = 'quiz-option';
+        btn.onclick = () => {
+          if (opt === q.correct) {
+            result.textContent = '✅ Правильно!';
+          } else {
+            result.textContent = '❌ Неверно. Это был ' + q.correct + '.';
+          }
+          setTimeout(() => {
+            current = (current + 1) % questions.length;
+            loadQuestion();
+          }, 1500);
+        };
+        options.appendChild(btn);
+      });
+    }
+
+    loadQuestion();
+
+    // Тёмная тема
+    const toggle = document.getElementById('theme-toggle');
+    toggle.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+    });
+    if (localStorage.getItem('theme') === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
+</body>
+</html>
